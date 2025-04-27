@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portable Solar Refridgerator Control</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-solar-panel"></i> Portable Solar Refridgerator</h1>
+            <div class="header-controls">
+                <div class="connection-status">
+                    <span id="status-indicator" class="offline"></span>
+                    <span id="status-text">Offline</span>
+                    <span id="ip-display">Not connected</span>
+                </div>
+                <button id="logout-btn" class="btn secondary">Logout</button>
+            </div>
+        </header>
+
+        <main>
+            <section class="dashboard">
+                <div class="card temperature">
+                    <h2><i class="fas fa-thermometer-half"></i> Temperature</h2>
+                    <div class="value" id="temperature">--°C</div>
+                    <div class="range-control">
+                        <label>Setpoint: <span id="setpoint-value">4</span>°C</label>
+                        <input type="range" id="temp-setpoint" min="-20" max="20" value="4" step="1">
+                    </div>
+                </div>
+
+                <div class="card power">
+                    <h2><i class="fas fa-bolt"></i> Power</h2>
+                    <div class="value" id="battery-level">--%</div>
+                    <div class="value" id="power-source">Solar</div>
+                    <div class="controls">
+                        <button id="power-btn" class="btn off">Power OFF</button>
+                        <button id="override-btn" class="btn secondary">Override Mode</button>
+                    </div>
+                </div>
+
+                <div class="card status">
+                    <h2><i class="fas fa-info-circle"></i> Status</h2>
+                    <div class="status-item">
+                        <span>Compressor:</span>
+                        <span id="compressor-status">Off</span>
+                    </div>
+                    <div class="status-item">
+                        <span>Door:</span>
+                        <span id="door-status">Closed</span>
+                    </div>
+                    <div class="status-item">
+                        <span>Connection:</span>
+                        <span id="connection-type">WiFi</span>
+                    </div>
+                    <div class="status-item">
+                        <span>Last Update:</span>
+                        <span id="last-update">Never</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="charts">
+                <div class="card">
+                    <h2>Temperature History</h2>
+                    <canvas id="temp-chart"></canvas>
+                </div>
+                <div class="card">
+                    <h2>Power Consumption</h2>
+                    <canvas id="power-chart"></canvas>
+                </div>
+            </section>
+
+            <section class="settings">
+                <div class="card">
+                    <h2><i class="fas fa-cog"></i> Settings</h2>
+                    <div class="form-group">
+                        <label for="fridge-ip">Fridge IP Address</label>
+                        <input type="text" id="fridge-ip" placeholder="192.168.1.100">
+                        <button id="update-ip-btn" class="btn secondary">Update IP</button>
+                    </div>
+                    <div class="form-group">
+                        <label>Notification Settings</label>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="notify-temp" checked>
+                            <label for="notify-temp">Temperature alerts</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="notify-power" checked>
+                            <label for="notify-power">Power outages</label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Portable Solar Refridgerator © 2025 | Logged in as <span id="username-display">Guest</span></p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>
